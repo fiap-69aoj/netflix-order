@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: netflix-payment
+  profiles:
+    active:
+      dev
+  cloud:
+    config:
+      uri: http://netflix-configuration-server.sa-east-1.elasticbeanstalk.com
+
+server:
+  port: 8090

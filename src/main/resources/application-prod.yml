@@ -1,0 +1,15 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    url: jdbc:mysql://fiapnetflix.c86nbpf4k73h.sa-east-1.rds.amazonaws.com:3306/netflix-payment
+    username: admin
+    password: iXHggP96c3dqjJ2k
+  zipkin:
+    baseUrl: http://zipkin:9411/
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery-server:8761/eureka/
