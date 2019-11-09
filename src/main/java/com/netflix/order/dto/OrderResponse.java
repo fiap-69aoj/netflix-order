@@ -27,7 +27,7 @@ public class OrderResponse implements Serializable {
     private Long clientID;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-    private Instant moment;
+    private Instant insertDate;
 
     private OrderStatus orderStatus;
 

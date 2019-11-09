@@ -26,7 +26,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "payment")
+@Table(name = "tb_payment")
 public class PaymentEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

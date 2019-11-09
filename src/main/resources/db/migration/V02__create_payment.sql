@@ -1,4 +1,4 @@
-CREATE TABLE `payment` (
+CREATE TABLE `tb_payment` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `insert_date` DATE NOT NULL,
   PRIMARY KEY (`id`)

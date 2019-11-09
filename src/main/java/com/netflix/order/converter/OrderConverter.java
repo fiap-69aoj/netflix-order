@@ -24,7 +24,7 @@ public class OrderConverter {
         return OrderEntity.builder()
                 .client(userEntity)
                 .orderStatus(OrderStatus.WAITING_PAYMENT)
-                .moment(Instant.now())
+                .insertDate(Instant.now())
                 .build();
     }
 
@@ -36,7 +36,7 @@ public class OrderConverter {
 
     public OrderResponse toOrderResponse (final OrderEntity orderEntity) {
         return OrderResponse.builder()
-                .moment(orderEntity.getMoment())
+                .insertDate(orderEntity.getInsertDate())
                 .orderStatus(orderEntity.getOrderStatus())
                 .build();
     }
