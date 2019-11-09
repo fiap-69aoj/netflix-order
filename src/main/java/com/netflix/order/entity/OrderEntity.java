@@ -1,15 +1,18 @@
 package com.netflix.order.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.netflix.order.entity.enums.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.Instant;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,11 +31,13 @@ import javax.persistence.Table;
 
 @Builder
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "order")
 public class OrderEntity implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -42,13 +47,16 @@ public class OrderEntity implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
 
-    private Integer orderStatus;
+    @Column(name = "order_status")
+    private OrderStatus orderStatus;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id")
     private UserEntity client;
 
-    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_id", referencedColumnName = "id")
     private PaymentEntity payment;
+
 
 }

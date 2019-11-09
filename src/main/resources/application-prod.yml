@@ -3,7 +3,7 @@ spring:
     hibernate:
       ddl-auto: validate
   datasource:
-    url: jdbc:mysql://fiapnetflix.c86nbpf4k73h.sa-east-1.rds.amazonaws.com:3306/netflix-payment
+    url: jdbc:mysql://fiapnetflix.c86nbpf4k73h.sa-east-1.rds.amazonaws.com:3306/netflix-order
     username: admin
     password: iXHggP96c3dqjJ2k
   zipkin:

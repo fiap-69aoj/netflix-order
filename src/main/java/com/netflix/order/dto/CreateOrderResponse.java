@@ -1,4 +1,4 @@
-package com.netflix.order.entity;
+package com.netflix.order.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,26 +7,20 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 /**
  * @author flaoliveira
  * @version : $<br/>
  * : $
- * @since 08/11/2019 19:23
+ * @since 08/11/2019 22:14
  */
 @Builder
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "user")
-public class UserEntity implements Serializable {
+@AllArgsConstructor
+public class CreateOrderResponse implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
-    @Id
-    private Long id;
+    private Long clientID;
 
 }
