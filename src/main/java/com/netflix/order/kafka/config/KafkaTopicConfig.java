@@ -30,7 +30,12 @@ public class KafkaTopicConfig {
     }
 
     @Bean
-    public NewTopic topic1() {
+    public NewTopic topicUserCreated() {
         return new NewTopic("user_created", 1, (short) 1);
+    }
+
+    @Bean
+    public NewTopic topicUser() {
+        return new NewTopic("user", 1, (short) 1);
     }
 }

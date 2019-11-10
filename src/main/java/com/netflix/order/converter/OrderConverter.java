@@ -1,5 +1,8 @@
 package com.netflix.order.converter;
 
+import com.netflix.commons.kafka.dto.OrderCreatedDto;
+import com.netflix.commons.kafka.dto.OrderStatusDto;
+import com.netflix.commons.kafka.dto.UserCreatedDto;
 import com.netflix.order.dto.CreateOrderRequest;
 import com.netflix.order.dto.CreateOrderResponse;
 import com.netflix.order.dto.OrderResponse;
@@ -38,6 +41,22 @@ public class OrderConverter {
         return OrderResponse.builder()
                 .insertDate(orderEntity.getInsertDate())
                 .orderStatus(orderEntity.getOrderStatus())
+                .build();
+    }
+
+    public OrderEntity orderCreatedDtoToOrderEntity (final UserCreatedDto userCreatedDto) {
+        return OrderEntity.builder()
+                .client(UserEntity.builder().id(userCreatedDto.getId()).build())
+                .orderStatus(OrderStatus.WAITING_PAYMENT)
+                .insertDate(Instant.now())
+                .build();
+    }
+
+    public OrderCreatedDto orderCreatedDtoToOrderEntity (final OrderEntity orderEntity) {
+        return OrderCreatedDto.builder()
+                .clientId(orderEntity.getClient().getId())
+                .orderStatus(OrderStatusDto.valueOf(orderEntity.getOrderStatus().name()))
+                .orderId(orderEntity.getId())
                 .build();
     }
 
