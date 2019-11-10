@@ -3,8 +3,10 @@ package com.netflix.order.controller;
 import com.netflix.order.dto.CancelOrderRequest;
 import com.netflix.order.dto.CreateOrderRequest;
 import com.netflix.order.dto.CreateOrderResponse;
+import com.netflix.order.dto.Greeting;
 import com.netflix.order.dto.OrderResponse;
 import com.netflix.order.service.OrderService;
+import com.netflix.order.service.producer.Producer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -35,6 +37,15 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private Producer producer;
+
+    @PostMapping(value = "publish")
+    public ResponseEntity<String> publish(@RequestBody final Greeting message) {
+        this.producer.sendMessage(message);
+        return new ResponseEntity<>("postando na fila", HttpStatus.OK);
+    }
 
     @GetMapping
     public Page<OrderResponse> findByUser(
