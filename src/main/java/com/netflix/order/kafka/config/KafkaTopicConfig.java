@@ -1,4 +1,4 @@
-package com.netflix.order.config;
+package com.netflix.order.kafka.config;
 
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -31,6 +31,6 @@ public class KafkaTopicConfig {
 
     @Bean
     public NewTopic topic1() {
-        return new NewTopic("user", 1, (short) 1);
+        return new NewTopic("user_created", 1, (short) 1);
     }
 }

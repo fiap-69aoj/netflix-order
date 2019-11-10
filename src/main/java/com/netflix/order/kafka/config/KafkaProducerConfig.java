@@ -1,6 +1,6 @@
-package com.netflix.order.config;
+package com.netflix.order.kafka.config;
 
-import com.netflix.order.dto.Greeting;
+import com.netflix.order.kafka.dto.Greeting;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;

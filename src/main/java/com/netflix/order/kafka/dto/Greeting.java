@@ -1,4 +1,4 @@
-package com.netflix.order.dto;
+package com.netflix.order.kafka.dto;
 
 /**
  * @author flaoliveira

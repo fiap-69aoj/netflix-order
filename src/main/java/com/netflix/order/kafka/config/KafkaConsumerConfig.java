@@ -1,6 +1,7 @@
-package com.netflix.order.config;
+package com.netflix.order.kafka.config;
 
-import com.netflix.order.dto.Greeting;
+import com.netflix.order.kafka.dto.Greeting;
+import com.netflix.order.kafka.dto.UserCreatedDto;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -38,8 +39,29 @@ public class KafkaConsumerConfig {
     public ConsumerFactory<String, Greeting> greetingConsumerFactory() {
         Map<String, Object> props = new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "greeting");
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "group_id");
         return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), new JsonDeserializer<>(Greeting.class));
     }
 
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, UserCreatedDto> userCreatedKafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory<String, UserCreatedDto> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(userCreatedConsumerFactory());
+        return factory;
+    }
+
+    public ConsumerFactory<String, UserCreatedDto> userCreatedConsumerFactory() {
+        Map<String, Object> props = new HashMap<>();
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "group_id");
+        return new DefaultKafkaConsumerFactory<>(props, new StringDeserializer(), new CustomJsonDeserializer<>(UserCreatedDto.class));
+    }
+
+}
+
+class CustomJsonDeserializer<T> extends JsonDeserializer<T> {
+    public CustomJsonDeserializer(Class<? super T> targetType) {
+        super(targetType);
+        this.addTrustedPackages("*");
+    }
 }

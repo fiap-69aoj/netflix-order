@@ -1,6 +1,6 @@
 package com.netflix.order.service.consumer;
 
-import com.netflix.order.dto.Greeting;
+import com.netflix.order.kafka.dto.Greeting;
 import com.netflix.order.service.producer.Producer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -3,7 +3,7 @@ package com.netflix.order.controller;
 import com.netflix.order.dto.CancelOrderRequest;
 import com.netflix.order.dto.CreateOrderRequest;
 import com.netflix.order.dto.CreateOrderResponse;
-import com.netflix.order.dto.Greeting;
+import com.netflix.order.kafka.dto.Greeting;
 import com.netflix.order.dto.OrderResponse;
 import com.netflix.order.service.OrderService;
 import com.netflix.order.service.producer.Producer;
