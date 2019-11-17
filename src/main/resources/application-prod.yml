@@ -10,6 +10,12 @@ spring:
   zipkin:
     baseUrl: http://netflix-zipkin:9411/
 
+  kafka:
+    consumer:
+      bootstrap-servers: netflix-kafka:9092
+    producer:
+      bootstrap-servers: netflix-kafka:9092
+
 eureka:
   client:
     serviceUrl:
