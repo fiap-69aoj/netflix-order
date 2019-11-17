@@ -1,6 +1,5 @@
 package com.netflix.order.kafka.config;
 
-import com.netflix.commons.kafka.dto.GreetingDto;
 import com.netflix.commons.kafka.dto.OrderCreatedDto;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -26,20 +25,6 @@ public class KafkaProducerConfig {
 
     @Value(value = "${kafka.bootstrapAddress}")
     private String bootstrapAddress;
-
-    @Bean
-    public ProducerFactory<String, GreetingDto> greetingProducerFactory() {
-        Map<String, Object> configProps = new HashMap<>();
-        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
-        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
-        return new DefaultKafkaProducerFactory<>(configProps);
-    }
-
-    @Bean
-    public KafkaTemplate<String, GreetingDto> greetingKafkaTemplate() {
-        return new KafkaTemplate<>(greetingProducerFactory());
-    }
 
     @Bean
     public ProducerFactory<String, OrderCreatedDto> orderCreatedProducerFactory() {

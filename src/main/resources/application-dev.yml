@@ -1,33 +1,18 @@
 spring:
-  jpa:
-    hibernate:
-      format_sql: true
-    show-sql: true
   datasource:
-    url: jdbc:h2:mem:netflix-order
-    username: sa
-    password: sa
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/netflix-order
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    hibernate.format_sql: true
   zipkin:
     baseUrl: http://localhost:9411/
     
 kafka:
   bootstrapAddress: localhost:9092
   
-#  kafka:
-#    consumer:
-#      bootstrap-servers: localhost:9092
-#      group-id: group_id
-#      auto-offset-reset: earliest
-#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-#      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-#    producer:
-#      bootstrap-servers: localhost:9092
-#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-#      value-serializer: org.apache.kafka.common.serialization.StringSerializer
 eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
